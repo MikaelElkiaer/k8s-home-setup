@@ -1,0 +1,28 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: drone
+  namespace: drone
+  annotations:
+    flux.weave.works/automated: "false"
+    flux.weave.works/tag.chart-image: semver:~2
+spec:
+  releaseName: drone
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: drone
+    version: 2.1.0
+  values:
+    sourceControl:
+      provider: github
+      secret: drone-server-secrets
+      github:
+        clientID: 9268bf87db25d8c5da40
+        clientSecretKey: clientSecret
+        server: https://github.com
+    server:
+      host: drone.k8s.mikelk.dk
+      adminUser: MikaelElkiaer
+    env:
+      DRONE_USER_FILTER: MikaelElkiaer
