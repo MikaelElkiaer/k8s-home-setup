@@ -17,8 +17,6 @@ spec:
       port: 4443
   selector:
     app: traefik
-  externalIPs:
-    - 10.156.0.2
 
 ---
 apiVersion: v1
