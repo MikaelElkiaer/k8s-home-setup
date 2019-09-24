@@ -17,6 +17,7 @@ spec:
       port: 4443
   selector:
     app: traefik
+  type: LoadBalancer
 
 ---
 apiVersion: v1
