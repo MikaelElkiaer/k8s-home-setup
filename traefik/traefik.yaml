@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: traefik
   namespace: traefik
-  annotations:
-    kubernetes.io/ingress.global-static-ip-name: "k8s"
 
 spec:
   ports:
