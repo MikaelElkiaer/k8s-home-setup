@@ -68,6 +68,7 @@ spec:
       port: 80
     middlewares:
       - name: securityheaders
+        namespace: traefik
   tls:
     certResolver: default
     options:
