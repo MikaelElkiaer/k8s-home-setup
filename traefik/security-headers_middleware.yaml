@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: securityHeaders
+  namespace: traefik
+
+spec:
+  headers:
+    stsPreload: "true"
+    stsIncludeSubdomains: "true"
+    stsSeconds: 31536000    
+    forceSTSHeader: "true" 
+    frameDeny: "true"
+    sslRedirect: "true"
