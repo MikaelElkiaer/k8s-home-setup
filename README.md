@@ -6,7 +6,7 @@
 
 # Installing Flux
 * `helm repo add fluxcd https://charts.fluxcd.io`
-* `helm upgrade -i flux --set helmOperator.create=true --set helmOperator.createCRD=false --set git.url=git@github.com:MikaelElkiaer/flux-get-started --set git.pollInterval=1m --set syncGarbageCollection.dry=true --namespace flux fluxcd/flux`
+* `helm upgrade -i flux --set helmOperator.create=true --set helmOperator.createCRD=false --set git.url=git@github.com:MikaelElkiaer/flux-get-started --set git.pollInterval=1m --set syncGarbageCollection.enabled=true --namespace flux fluxcd/flux`
 
 # Installing Kubeseal
 * `wget https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.9.0/kubeseal-linux-amd64 -O kubeseal`
