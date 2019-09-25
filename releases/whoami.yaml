@@ -72,3 +72,4 @@ spec:
     certResolver: default
     options:
       name: default
+      namespace: traefik
