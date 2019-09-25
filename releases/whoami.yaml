@@ -67,7 +67,7 @@ spec:
     - name: whoami
       port: 80
     middlewares:
-      - name: securityHeaders
+      - name: securityheaders
   tls:
     certResolver: default
     options:
