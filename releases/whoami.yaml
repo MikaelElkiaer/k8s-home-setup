@@ -71,5 +71,4 @@ spec:
   tls:
     certResolver: default
     options:
-    - name: default
-    - name: mintls13
+      name: default
