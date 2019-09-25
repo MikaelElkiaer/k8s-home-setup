@@ -70,3 +70,6 @@ spec:
       - securityHeaders
   tls:
     certResolver: default
+    options:
+    - name: default
+    - name: mintls13
