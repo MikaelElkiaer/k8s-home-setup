@@ -61,7 +61,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`whoami.k8s.mikelk.dk`) && PathPrefix(`/tls`)
+  - match: Host(`whoami.k8s.mikelk.dk`)
     kind: Rule
     services:
     - name: whoami
