@@ -40,7 +40,7 @@ spec:
   - match: Host(`drone.k8s.mikelk.dk`)
     kind: Rule
     services:
-    - name: whoami
+    - name: drone
       port: 80
     middlewares:
     - name: securityheaders
