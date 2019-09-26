@@ -27,3 +27,26 @@ spec:
       adminUser: MikaelElkiaer
     env:
       DRONE_USER_FILTER: MikaelElkiaer
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-drone
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`drone.k8s.mikelk.dk`)
+    kind: Rule
+    services:
+    - name: whoami
+      port: 80
+    middlewares:
+    - name: securityheaders
+      namespace: traefik
+  tls:
+    certResolver: default
+    options:
+      name: default
+      namespace: traefik
