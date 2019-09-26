@@ -67,8 +67,8 @@ spec:
     - name: whoami
       port: 80
     middlewares:
-      - name: securityheaders
-        namespace: traefik
+    - name: securityheaders
+      namespace: traefik
   tls:
     certResolver: default
     options:
