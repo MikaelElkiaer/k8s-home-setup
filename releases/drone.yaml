@@ -25,9 +25,9 @@ spec:
     server:
       host: drone.k8s.mikelk.dk
       adminUser: MikaelElkiaer
-    env:
-      DRONE_USER_FILTER: MikaelElkiaer
-      DRONE_LOGS_DEBUG: true
+      env:
+        DRONE_USER_FILTER: MikaelElkiaer
+        DRONE_LOGS_DEBUG: true
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
