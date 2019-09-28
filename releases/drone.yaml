@@ -1,0 +1,54 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: drone
+  namespace: drone
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: semver:~2
+    flux.weave.works/tag.drone: semver:~1
+spec:
+  releaseName: drone
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: drone
+    version: 2.1.0
+  values:
+    sourceControl:
+      provider: github
+      secret: drone-server-secrets
+      github:
+        clientID: 9268bf87db25d8c5da40
+        clientSecretKey: clientSecret
+        server: https://github.com
+    server:
+      host: drone.k8s.mikelk.dk
+      adminUser: MikaelElkiaer
+      env:
+        DRONE_USER_FILTER: MikaelElkiaer
+        DRONE_LOGS_DEBUG: true
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-drone
+  namespace: drone
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`drone.k8s.mikelk.dk`)
+    kind: Rule
+    services:
+    - name: drone-drone
+      port: 80
+    middlewares:
+    - name: securityheaders
+      namespace: traefik
+  tls:
+    certResolver: default
+    options:
+      name: default
+      namespace: traefik
