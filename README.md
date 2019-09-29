@@ -10,4 +10,8 @@
 
 # Installing Kubeseal
 * `wget https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.9.0/kubeseal-linux-amd64 -O kubeseal`
-* `sudo install -m 755 kubeseal /usr/local/bin/kubeseal`
+* `sudo install -m 755 kubeseal ~/bin/kubeseal`
+
+# Installing drone (CLI)
+* `curl -L https://github.com/drone/drone-cli/releases/download/v1.1.0/drone_linux_amd64.tar.gz | tar zx`
+* `sudo install -t ~/bin drone`
