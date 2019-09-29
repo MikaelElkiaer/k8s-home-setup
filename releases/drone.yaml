@@ -38,6 +38,7 @@ metadata:
   namespace: drone
 spec:
   entryPoints:
+    - web
     - websecure
   routes:
   - match: Host(`drone.k8s.mikelk.dk`)
