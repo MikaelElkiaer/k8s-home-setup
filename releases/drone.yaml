@@ -24,6 +24,7 @@ spec:
         server: https://github.com
     server:
       host: drone.k8s.mikelk.dk
+      protocol: https
       adminUser: MikaelElkiaer
       env:
         DRONE_USER_FILTER: MikaelElkiaer
