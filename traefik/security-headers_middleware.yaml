@@ -12,5 +12,3 @@ spec:
     forceSTSHeader: "true" 
     frameDeny: "true"
     sslRedirect: "true"
-  redirectScheme:
-    scheme: https
