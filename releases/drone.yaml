@@ -29,6 +29,7 @@ spec:
       env:
         DRONE_USER_FILTER: MikaelElkiaer
         DRONE_LOGS_DEBUG: true
+        DRONE_SERVER_PROTO: https
 
 ---
 apiVersion: traefik.containo.us/v1alpha1
