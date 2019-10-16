@@ -15,6 +15,7 @@ spec:
     name: kibana
     version: 7.4.0
   values:
+    elasticsearchHosts: "https://elasticsearch-master:9200"
     extraEnvs:
       - name: 'ELASTICSEARCH_USERNAME'
         valueFrom:
