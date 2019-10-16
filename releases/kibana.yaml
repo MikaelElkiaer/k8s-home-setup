@@ -49,3 +49,28 @@ spec:
       - name: elastic-certificate-pem
         secretName: elastic-certificate-pem
         path: /usr/share/kibana/config/certs
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-kibana
+  namespace: elastic
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`kibana.k8s.mikelk.dk`)
+    kind: Rule
+    services:
+    - name: kibana-kibana
+      port: 5601
+      scheme: https
+    middlewares:
+    - name: securityheaders
+      namespace: traefik
+  tls:
+    certResolver: default
+    options:
+      name: default
+      namespace: traefik
