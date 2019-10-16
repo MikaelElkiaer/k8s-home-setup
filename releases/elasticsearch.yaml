@@ -14,3 +14,9 @@ spec:
     repository: https://helm.elastic.co
     name: elasticsearch
     version: 7.4.0
+  values:
+    resources:
+      requests:
+        memory: "1Gi"
+      limits:
+        memory: "1Gi"
