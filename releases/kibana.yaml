@@ -1,0 +1,16 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: kibana
+  namespace: elastic
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: semver:~7
+    flux.weave.works/tag.drone: semver:~7
+spec:
+  releaseName: kibana
+  chart:
+    repository: https://helm.elastic.co
+    name: kibana
+    version: 7.4.0
