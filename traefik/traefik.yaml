@@ -51,6 +51,7 @@ spec:
           image: traefik:v2.0
           args:
             - --api.insecure
+            - --serversTransport.insecureSkipVerify=true
             - --accesslog
             - --ping=true
             - --entrypoints.web.Address=:80
