@@ -5,9 +5,10 @@ metadata:
   name: kibana
   namespace: elastic
   annotations:
-    flux.weave.works/automated: "true"
-    flux.weave.works/tag.chart-image: semver:~7
-    flux.weave.works/tag.drone: semver:~7
+    fluxcd.io/automated: "true"
+    repository.fluxcd.io/kibana: image
+    tag.fluxcd.io/kibana: imageTag
+    filter.fluxcd.io/kibana: semver:~7.4
 spec:
   releaseName: kibana
   chart:
@@ -15,6 +16,8 @@ spec:
     name: kibana
     version: 7.4.0
   values:
+    image: docker.elastic.co/kibana/kibana
+    imageTag: 7.4.1
     elasticsearchHosts: "https://elasticsearch-master:9200"
     extraEnvs:
       - name: 'ELASTICSEARCH_USERNAME'
