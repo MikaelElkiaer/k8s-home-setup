@@ -8,7 +8,7 @@ metadata:
     fluxcd.io/automated: "true"
     repository.fluxcd.io/drone: images.server.repository
     tag.fluxcd.io/drone: images.server.tag
-    filter.fluxcd.io/drone: ~1
+    filter.fluxcd.io/drone: semer:~1
 spec:
   releaseName: drone
   chart:
