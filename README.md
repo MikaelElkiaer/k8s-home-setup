@@ -12,6 +12,12 @@
 * `helm repo add fluxcd https://charts.fluxcd.io`
 * `helm upgrade -i flux --set helmOperator.create=true --set helmOperator.createCRD=false --set git.url=git@github.com:MikaelElkiaer/flux-get-started --set git.pollInterval=1m --set syncGarbageCollection.enabled=true --namespace flux fluxcd/flux`
 
+Once started, call
+
+* `fluxctl identity --k8s-fwd-ns flux`
+
+in order to get the public SSH key to add to the GitHub repository as a Deploy Key.
+
 # Installing Kubeseal
 * `wget https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.9.0/kubeseal-linux-amd64 -O kubeseal`
 * `sudo install -m 755 kubeseal ~/bin/kubeseal`
