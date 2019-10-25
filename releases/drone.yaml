@@ -5,9 +5,10 @@ metadata:
   name: drone
   namespace: drone
   annotations:
-    flux.weave.works/automated: "true"
-    flux.weave.works/tag.chart-image: semver:~2
-    flux.weave.works/tag.drone: semver:~1
+    fluxcd.io/automated: "true"
+    repository.fluxcd.io/drone: images.server.repository
+    tag.fluxcd.io/drone: images.server.tag
+    filter.fluxcd.io/drone: ~1
 spec:
   releaseName: drone
   chart:
@@ -29,7 +30,10 @@ spec:
       env:
         DRONE_USER_FILTER: MikaelElkiaer
         DRONE_LOGS_DEBUG: true
-
+    images:
+      server:
+        repository: docker.io/drone/drone
+        tag: 1.3.1
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
