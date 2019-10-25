@@ -34,7 +34,9 @@ metadata:
   name: traefik
   labels:
     app: traefik
-
+  annotations:
+    fluxcd.io/automated: true
+    fluxcd.io/tag.traefik: semver:~2
 spec:
   replicas: 1
   selector:
@@ -48,7 +50,7 @@ spec:
       serviceAccountName: traefik-ingress-controller
       containers:
         - name: traefik
-          image: traefik:v2.0
+          image: traefik:v2.0.2
           args:
             - --api.insecure
             - --serversTransport.insecureSkipVerify=true
