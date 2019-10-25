@@ -5,16 +5,19 @@ metadata:
   name: elasticsearch
   namespace: elastic
   annotations:
-    flux.weave.works/automated: "true"
-    flux.weave.works/tag.chart-image: semver:~7
-    flux.weave.works/tag.drone: semver:~7
+    fluxcd.io/automated: "true"
+    repository.fluxcd.io/elasticsearch: image
+    tag.fluxcd.io/elasticsearch: imageTag
+    filter.fluxcd.io/elasticsearch: semver:~7.4
 spec:
   releaseName: elasticsearch
   chart:
     repository: https://helm.elastic.co
     name: elasticsearch
-    version: 7.4.0
+    version: 7.4.1
   values:
+    image: docker.elastic.co/elasticsearch/elasticsearch
+    imageTag: 7.4.1 
     replicas: 1
     protocol: https
     esConfig:
