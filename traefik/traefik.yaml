@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -6,26 +7,24 @@ metadata:
 
 spec:
   ports:
-    - protocol: TCP
-      name: web
-      port: 80
-    - protocol: TCP
-      name: admin
-      port: 8080
-    - protocol: TCP
-      name: websecure
-      port: 443
+  - protocol: TCP
+    name: web
+    port: 80
+  - protocol: TCP
+    name: admin
+    port: 8080
+  - protocol: TCP
+    name: websecure
+    port: 443
   selector:
     app: traefik
   type: LoadBalancer
-
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   namespace: traefik
   name: traefik-ingress-controller
-
 ---
 kind: Deployment
 apiVersion: extensions/v1beta1
@@ -49,23 +48,23 @@ spec:
     spec:
       serviceAccountName: traefik-ingress-controller
       containers:
-        - name: traefik
-          image: traefik:v2.0.2
-          args:
-            - --api.insecure
-            - --serversTransport.insecureSkipVerify=true
-            - --accesslog
-            - --ping=true
-            - --entrypoints.web.Address=:80
-            - --entrypoints.websecure.Address=:443
-            - --providers.kubernetescrd
-            - --certificatesresolvers.default.acme.tlschallenge
-            - --certificatesresolvers.default.acme.email=mikaelec+github@gmail.com
-            - --certificatesresolvers.default.acme.storage=acme.json
-          ports:
-            - name: web
-              containerPort: 80
-            - name: websecure
-              containerPort: 443
-            - name: admin
-              containerPort: 8080
+      - name: traefik
+        image: traefik:v2.0.4
+        args:
+        - --api.insecure
+        - --serversTransport.insecureSkipVerify=true
+        - --accesslog
+        - --ping=true
+        - --entrypoints.web.Address=:80
+        - --entrypoints.websecure.Address=:443
+        - --providers.kubernetescrd
+        - --certificatesresolvers.default.acme.tlschallenge
+        - --certificatesresolvers.default.acme.email=mikaelec+github@gmail.com
+        - --certificatesresolvers.default.acme.storage=acme.json
+        ports:
+        - name: web
+          containerPort: 80
+        - name: websecure
+          containerPort: 443
+        - name: admin
+          containerPort: 8080
