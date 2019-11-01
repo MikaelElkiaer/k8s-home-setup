@@ -78,6 +78,7 @@ spec:
         - --serversTransport.insecureSkipVerify=true
         - --accesslog
         - --ping=true
+        - --ping.entryPoint="websecure"
         - --entrypoints.web.Address=:80
         - --entrypoints.websecure.Address=:443
         - --providers.kubernetescrd
