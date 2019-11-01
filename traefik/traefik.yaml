@@ -26,6 +26,33 @@ metadata:
   namespace: traefik
   name: traefik-ingress-controller
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: traefik-dynamic
+  namespace: traefik
+data:
+  traefik-dynamic.yaml: |
+    http:
+      routers:
+        https-redirect-all:
+          rule: HostRegexp(`{host:.*}`)
+          service: noop
+          entryPoints:
+          - web
+          middlewares:
+          - https-redirect
+      services:
+        noop:
+          loadBalancer:
+            servers:
+            - url: ""
+      middlewares:
+        https-redirect:
+          redirectScheme:
+            scheme: https
+            permanent: true
+---
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
@@ -61,6 +88,11 @@ spec:
         - --certificatesresolvers.default.acme.tlschallenge
         - --certificatesresolvers.default.acme.email=mikaelec+github@gmail.com
         - --certificatesresolvers.default.acme.storage=acme.json
+        - --providers.file.filename=/config/traefik-dynamic.yaml
+        volumeMounts:
+        - name: config
+          mountPath: "/config"
+          readOnly: true
         ports:
         - name: web
           containerPort: 80
@@ -68,3 +100,7 @@ spec:
           containerPort: 443
         - name: admin
           containerPort: 8080
+      volumes:
+      - name: config
+        configMap:
+          name: traefik-dynamic
