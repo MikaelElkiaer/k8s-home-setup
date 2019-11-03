@@ -11,6 +11,9 @@ spec:
     name: web
     port: 80
   - protocol: TCP
+    name: admin
+    port: 8080
+  - protocol: TCP
     name: websecure
     port: 443
   - protocol: TCP
@@ -78,6 +81,7 @@ spec:
       - name: traefik
         image: traefik:v2.0.4
         args:
+        - --api.insecure
         - --serversTransport.insecureSkipVerify=true
         - --accesslog
         - --entrypoints.web.Address=:80
@@ -100,6 +104,8 @@ spec:
           containerPort: 80
         - name: websecure
           containerPort: 443
+        - name: admin
+          containerPort: 8080
         - name: ping
           containerPort: 8081
       volumes:
