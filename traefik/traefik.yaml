@@ -13,6 +13,9 @@ spec:
   - protocol: TCP
     name: websecure
     port: 443
+  - protocol: TCP
+    name: ping
+    port: 8081
   selector:
     app: traefik
   type: LoadBalancer
@@ -77,8 +80,6 @@ spec:
         args:
         - --serversTransport.insecureSkipVerify=true
         - --accesslog
-        - --ping=true
-        - --ping.entryPoint="websecure"
         - --entrypoints.web.Address=:80
         - --entrypoints.websecure.Address=:443
         - --providers.kubernetescrd
@@ -86,6 +87,9 @@ spec:
         - --certificatesresolvers.default.acme.email=mikaelec+github@gmail.com
         - --certificatesresolvers.default.acme.storage=acme.json
         - --providers.file.filename=/config/traefik-dynamic.yaml
+        - --ping=true
+        - --ping.entryPoint="ping"
+        - --entrypoints.ping.Address=:8081
         volumeMounts:
         - name: config
           mountPath: "/config"
@@ -95,6 +99,8 @@ spec:
           containerPort: 80
         - name: websecure
           containerPort: 443
+        - name: ping
+          containerPort: 8081
       volumes:
       - name: config
         configMap:
