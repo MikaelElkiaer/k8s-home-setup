@@ -86,6 +86,7 @@ spec:
         - --certificatesresolvers.default.acme.tlschallenge
         - --certificatesresolvers.default.acme.email=mikaelec+github@gmail.com
         - --certificatesresolvers.default.acme.storage=acme.json
+        - --certificatesresolvers.default.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
         - --providers.file.filename=/config/traefik-dynamic.yaml
         - --ping=true
         - --ping.entryPoint="ping"
