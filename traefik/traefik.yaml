@@ -16,9 +16,6 @@ spec:
   - protocol: TCP
     name: websecure
     port: 443
-  - protocol: TCP
-    name: ping
-    port: 8081
   selector:
     app: traefik
   type: LoadBalancer
@@ -93,8 +90,6 @@ spec:
         - --certificatesresolvers.default.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
         - --providers.file.filename=/config/traefik-dynamic.yaml
         - --ping=true
-        - --entrypoints.ping.address=:8081
-        - --ping.entrypoint="ping"
         volumeMounts:
         - name: config
           mountPath: "/config"
@@ -106,8 +101,6 @@ spec:
           containerPort: 443
         - name: admin
           containerPort: 8080
-        - name: ping
-          containerPort: 8081
       volumes:
       - name: config
         configMap:
