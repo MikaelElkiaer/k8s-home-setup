@@ -89,8 +89,8 @@ spec:
         - --certificatesresolvers.default.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
         - --providers.file.filename=/config/traefik-dynamic.yaml
         - --ping=true
-        - --ping.entryPoint="ping"
-        - --entrypoints.ping.Address=:8081
+        - --entrypoints.ping.address=:8081
+        - --ping.entrypoint="ping"
         volumeMounts:
         - name: config
           mountPath: "/config"
