@@ -80,7 +80,7 @@ spec:
       serviceAccountName: traefik-ingress-controller
       containers:
       - name: traefik
-        image: traefik:v2.0.4
+        image: traefik:v2.0.5
         args:
         - --api.dashboard=true
         - --serversTransport.insecureSkipVerify=true
